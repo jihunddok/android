@@ -1,28 +1,27 @@
-<?php
-
-    $con = mysqli_connect('113.198.235.225', 'root', '1234', 'projecgt');
-
-
-	myslqi_set_charset($con,"utf-8");
-
-	if(mysqli_connect_errno($con)){
-		echo "DB connect fail";
+<?
+    require_once "dbDetails.php"
+    // 데이터베이스 접속 문자열. (db위치, 유저 이름, 비밀번호)
+	$conn = mysqli_connect(HOST, USER, PASS);
+		if(mysqli_connect_errno()){
+		echo "접속 실패";
 	}
-
-	$userid = $_POST['id'];
-	$username = $_POST['name'];
-	$userPassword = $_POST['password'];
-	
-	$result = mysqli_query($con,"insert into member(m_name,m_id,m_pw) values ('$username','$userid','$userPassword')");
-
-	if($result){
-		echo 'success';
-	}
-	else {
-		echo 'fail';
-	}
-
-	mysqli_close($con);
-}
-
+	mysqli_set_charset($conn, "utf8");
+	mysqli_select_db($conn, DB);
+ 
+   // 세션 시작
+   session_start();
+ 
+   $id = $_POST[u_id];
+   $pw = $_POST[u_pw]; 
+   $name = $_POST[u_name]
+ 
+   $query = "INSERT INTO USERS(m_id, m_pw, m_name) VALUES('$id', '$pw','$name')";
+ 
+   $res = mysqli_query($conn, $query);
+ 
+   if(!$res)
+        die("mysql query error");
+   else
+        echo "insert success"
+ 
 ?>
