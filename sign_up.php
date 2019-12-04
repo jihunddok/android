@@ -3,39 +3,26 @@
     $con = mysqli_connect('113.198.235.225', 'root', '1234', 'projecgt');
 
 
-     $userID = $_POST["userID"];
+	myslqi_set_charset($con,"utf-8");
 
+	if(mysqli_connect_errno($con)){
+		echo "DB connect fail";
+	}
 
-     $statement = mysqli_prepare($con, "SELECT userID FROM USER WHERE userID = ?");
+	$userid = $_POST['id'];
+	$username = $_POST['name'];
+	$userPassword = $_POST['password'];
+	
+	$result = mysqli_query($con,"insert into member(m_name,m_id,m_pw) values ('$username','$userid','$userPassword')");
 
-     //위에서 *로 하면 mysqli_stmt_bind_result에서 에러가 나서 정정함
+	if($result){
+		echo 'success';
+	}
+	else {
+		echo 'fail';
+	}
 
-
-     mysqli_stmt_bind_param($statement, "s", $userID);
-
-     mysqli_stmt_execute($statement);
-
-     mysqli_stmt_store_result($statement);//결과를 클라이언트에 저장함
-
-     mysqli_stmt_bind_result($statement, $userID);//결과를 $userID에 바인딩함
-
-
-     $response = array();
-
-     $response["success"] = true;
-
-
-     while(mysqli_stmt_fetch($statement)){
-
-       $response["success"] = false;//회원가입불가를 나타냄
-
-       $response["userID"] = $userID;
-
-     }
-
-
-     //데이터베이스 작업이 성공 혹은 실패한것을 알려줌
-
-     echo json_encode($response);
+	mysqli_close($con);
+}
 
 ?>
