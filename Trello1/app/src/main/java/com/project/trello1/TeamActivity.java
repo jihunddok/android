@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -17,12 +16,17 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Vector;
 
 import ch.boye.httpclientandroidlib.HttpEntity;
 import ch.boye.httpclientandroidlib.HttpResponse;
+import ch.boye.httpclientandroidlib.NameValuePair;
 import ch.boye.httpclientandroidlib.client.HttpClient;
+import ch.boye.httpclientandroidlib.client.entity.UrlEncodedFormEntity;
 import ch.boye.httpclientandroidlib.client.methods.HttpPost;
 import ch.boye.httpclientandroidlib.impl.client.DefaultHttpClient;
+import ch.boye.httpclientandroidlib.message.BasicNameValuePair;
+import ch.boye.httpclientandroidlib.protocol.HTTP;
 
 public class TeamActivity extends AppCompatActivity {
 
@@ -32,6 +36,8 @@ public class TeamActivity extends AppCompatActivity {
     InputStream is = null; // JSON INPUTSTREAM
     AsyncTask_T test = null; // Asynctask 클래스를 사용하기 위한 변수
 
+    String id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +45,9 @@ public class TeamActivity extends AppCompatActivity {
         setTitle("Team");
         teamAdapter = new TeamAdapter();
         listview = findViewById(R.id.listView);
+
+        Intent intent = getIntent();
+        id = intent.getStringExtra("id");
 
         listview.setAdapter(teamAdapter);
         test = new AsyncTask_T();
@@ -68,9 +77,17 @@ public class TeamActivity extends AppCompatActivity {
         protected String doInBackground(String... strings) {
             try {
 
-                HttpClient httpClient = new DefaultHttpClient();
-                HttpPost httpPost = new HttpPost("http://113.198.235.225/team.php");
 
+                HttpPost httpPost = new HttpPost("http://113.198.235.225/team.php");
+                // 전달할 인자
+                Vector<NameValuePair> nameValue = new Vector<>();
+                nameValue.add(new BasicNameValuePair("m_id", id));
+
+                // 웹 접속 - utf-8
+                HttpEntity enty = new UrlEncodedFormEntity(nameValue, HTTP.UTF_8);
+                httpPost.setEntity(enty);
+
+                HttpClient httpClient = new DefaultHttpClient();
                 HttpResponse response = httpClient.execute(httpPost);
 
                 // 아래 코드부터는 요청에 대한 응답을 받아와서 처리하는 코드

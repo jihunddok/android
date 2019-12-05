@@ -83,7 +83,7 @@ public class BoardActivity extends AppCompatActivity {
                 HttpPost httpPost = new HttpPost("http://113.198.235.225/board.php");
 
                 // 전달할 인자
-                Vector<NameValuePair> nameValue = new Vector<NameValuePair>();
+                Vector<NameValuePair> nameValue = new Vector<>();
                 nameValue.add(new BasicNameValuePair("team_code", teamCode));
 
                 // 웹 접속 - utf-8

@@ -76,6 +76,7 @@ public class LoginActivity extends AppCompatActivity {
     public void signup(View view) {
         Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
         startActivity(intent);
+        finish();
     }
 
     class Async_userinfo extends AsyncTask<String, Integer, String> {
