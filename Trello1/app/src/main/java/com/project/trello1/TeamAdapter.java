@@ -46,7 +46,6 @@ public class TeamAdapter extends BaseAdapter {
             holder.tv_teamCode =view.findViewById(R.id.teamCode);
             holder.tv_teamName = view.findViewById(R.id.teamName);
             holder.tv_teamMemberNo = view.findViewById(R.id.teamMemberNo);
-
             view.setTag(holder);
         }
         else {
@@ -68,7 +67,6 @@ public class TeamAdapter extends BaseAdapter {
         public TextView tv_teamCode;
         public TextView tv_teamName;
         public TextView tv_teamMemberNo;
-
     }
 
     public void addItem(String _teamCode, String _teamName, String _teamMemberNo){

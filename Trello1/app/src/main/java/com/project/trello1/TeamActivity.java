@@ -56,7 +56,7 @@ public class TeamActivity extends AppCompatActivity {
         // 리스트뷰 선택했을 때 이벤트 team -> board 목록
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long l) {
+            public void onItemClick(AdapterView<?> parent, View view, int i, long l) {
                 TextView teamCode = view.findViewById(R.id.teamCode);
                 TextView teamName = view.findViewById(R.id.teamName);
                 // Toast.makeText(TeamActivity.this, teamCode.getText(), Toast.LENGTH_SHORT).show();
@@ -64,7 +64,6 @@ public class TeamActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), BoardActivity.class);
                 intent.putExtra("teamCode", teamCode.getText());
                 intent.putExtra("teamName", teamName.getText());
-
                 startActivity(intent);
             }
         });
@@ -113,7 +112,7 @@ public class TeamActivity extends AppCompatActivity {
             try {
 
                 JSONObject root = new JSONObject(_result);
-                JSONArray results = new JSONArray(root.getString("result"));
+                JSONArray results = new JSONArray(root.getString("results"));
 
                 for(int i = 0; i < results.length(); i++){
                     JSONObject content = results.getJSONObject(i);

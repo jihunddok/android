@@ -72,7 +72,6 @@ public class SignupActivity extends AppCompatActivity {
             if(insert == true){
                 Intent intent = new Intent(SignupActivity.this , LoginActivity.class);
                 startActivity(intent);
-                finish();
             }
         }
     }

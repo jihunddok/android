@@ -14,7 +14,6 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Vector;
-import java.util.concurrent.ExecutionException;
 
 import ch.boye.httpclientandroidlib.HttpEntity;
 import ch.boye.httpclientandroidlib.HttpResponse;
@@ -30,6 +29,8 @@ public class CardActivity extends AppCompatActivity {
 
     String boardCode;
     String boardName;
+
+    String cardCode;
 
     private ViewPager viewPager;
     private CardPagerAdapter cardPagerAdapter;
@@ -71,6 +72,7 @@ public class CardActivity extends AppCompatActivity {
         viewPager.setAdapter(cardPagerAdapter);
         viewPager.setPageTransformer(false, shadowTransformer);
         viewPager.setOffscreenPageLimit(3);
+
 
 
 
@@ -132,7 +134,7 @@ public class CardActivity extends AppCompatActivity {
 
                 for(int i = 0; i < results.length(); i++){
                     JSONObject content = results.getJSONObject(i);
-                    String cardCode = content.getString("card_code");
+                    cardCode = content.getString("card_code");
                     String cardName = content.getString("card_name");
                     String finish = content.getString("finish");
 

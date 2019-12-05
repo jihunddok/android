@@ -65,7 +65,6 @@ public class LoginActivity extends AppCompatActivity {
                 intent.putExtra( "id",r_id );
                 intent.putExtra( "name",r_name );
                 startActivity( intent );
-                finish();
             }
             else {
                 Toast.makeText( LoginActivity.this, "ID 또는 패스워드를 확인해주세요", Toast.LENGTH_LONG ).show();

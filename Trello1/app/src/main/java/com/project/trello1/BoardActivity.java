@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -47,7 +46,7 @@ public class BoardActivity extends AppCompatActivity {
         Intent intent = getIntent();
         teamCode = intent.getStringExtra("teamCode");
         String teamName = intent.getStringExtra("teamName");
-
+        String position = intent.getStringExtra("position");
         setTitle(teamName);
 
         boardAdapter = new BoardAdapter();

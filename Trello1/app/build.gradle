@@ -31,5 +31,4 @@ dependencies {
 
     // 로그인 관련
     implementation 'de.hdodenhof:circleimageview:2.2.0'
-
 }
