@@ -24,7 +24,7 @@ import ch.boye.httpclientandroidlib.client.HttpClient;
 import ch.boye.httpclientandroidlib.client.methods.HttpPost;
 import ch.boye.httpclientandroidlib.impl.client.DefaultHttpClient;
 
-public class MainActivity extends AppCompatActivity {
+public class TeamActivity extends AppCompatActivity {
 
     ListView listview;
     TeamAdapter teamAdapter;
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long l) {
                 TextView teamCode = view.findViewById(R.id.teamCode);
                 TextView teamName = view.findViewById(R.id.teamName);
-                // Toast.makeText(MainActivity.this, teamCode.getText(), Toast.LENGTH_SHORT).show();
+                // Toast.makeText(TeamActivity.this, teamCode.getText(), Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(getApplicationContext(), BoardActivity.class);
                 intent.putExtra("teamCode", teamCode.getText());
