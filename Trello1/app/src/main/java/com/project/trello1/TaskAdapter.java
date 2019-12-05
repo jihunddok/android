@@ -9,18 +9,18 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class BoardAdapter extends BaseAdapter {
+public class TaskAdapter extends BaseAdapter {
 
-    ArrayList<BoardItem> boardItems = new ArrayList<>();
+    ArrayList<TaskItem> taskItems = new ArrayList<>();
 
     @Override
     public int getCount() {
-        return boardItems.size();
+        return taskItems.size();
     }
 
     @Override
-    public BoardItem getItem(int position) {
-        return boardItems.get(position);
+    public TaskItem getItem(int position) {
+        return taskItems.get(position);
     }
 
     @Override
@@ -41,34 +41,33 @@ public class BoardAdapter extends BaseAdapter {
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
             // inflater 메소드를 활용하여 view 객체에 위젯들을 표현할 수 있도록 해줌
-            view = inflater.inflate(R.layout.board_adapter, null);
+            view = inflater.inflate(R.layout.viewpager_adapter, null);
 
             // xml의 위젯을 findViewById로 연결 - 각 리스트뷰 아이템의 변별력을 위해 해줌
-            holder.tv_boardCode = view.findViewById(R.id.boardCode);
-            holder.tv_boardName = view.findViewById(R.id.boardName);
+            holder.tv_taskName = view.findViewById(R.id.tv_taskName);
+            holder.tv_dueTo = view.findViewById(R.id.tv_dueTo);
             view.setTag(holder);
         }
         else {
-            holder = (viewHolder) view.getTag();
+            holder = (TaskAdapter.viewHolder) view.getTag();
         }
 
         // 커스텀한 xml에 Parse한 데이터베이스 정보들을 성정해주는 코드를 작성함
-        final BoardItem mData = getItem(i);
+        final TaskItem mData = getItem(i);
 
         // 위젯에 각 아이템에 맞는 데이터를 설정
-        holder.tv_boardCode.setText(mData.getBoardCode());
-        holder.tv_boardName.setText(mData.getBoardName());
+        holder.tv_taskName.setText(mData.getTaskName());
+        holder.tv_dueTo.setText(mData.getDueTo());
 
         return view;
     }
-
     class viewHolder{
-        public TextView tv_boardCode;
-        public TextView tv_boardName;
+        public TextView tv_taskName;
+        public TextView tv_dueTo;
     }
 
-    public void addItem(String _boardCode, String _boardName){
-        BoardItem boardItem = new BoardItem(_boardCode, _boardName);
-        boardItems.add(boardItem);
+    public void addItem(String _taskName, String _dueTo){
+        TaskItem taskItem = new TaskItem(_taskName, _dueTo);
+        taskItems.add(taskItem);
     }
 }

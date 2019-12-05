@@ -19,6 +19,7 @@ public class CardPagerAdapter extends PagerAdapter implements CardAdapter{
     private List<CardView> cardViews = new ArrayList<>();
     private float BaseElevation;
 
+
     public void addCardItem(String _cardCode, String _cardName, String _finish) {
         cardViews.add(null);
         CardItem cardItem = new CardItem(_cardCode, _cardName, _finish);
@@ -71,8 +72,14 @@ public class CardPagerAdapter extends PagerAdapter implements CardAdapter{
 
     private void bind(CardItem item, View view) {
         TextView cardName = view.findViewById(R.id.cardName);
-        // CheckBox checkBox = view.findViewById(R.id.checkBox);
+        CheckBox checkBox = view.findViewById(R.id.checkBox);
+
+        int temp = Integer.parseInt(item.isFinish());
+        boolean bool = (temp != 0);
+
         cardName.setText(item.getCardName());
-        // checkBox.setChecked(item.isFinish());
+        checkBox.setChecked(bool);
+
     }
+
 }

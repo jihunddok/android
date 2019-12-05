@@ -34,7 +34,7 @@ public class TeamActivity extends AppCompatActivity {
     TeamAdapter teamAdapter;
     String getMsg = ""; // 서버로 부터 전달받는 데이터
     InputStream is = null; // JSON INPUTSTREAM
-    AsyncTask_T test = null; // Asynctask 클래스를 사용하기 위한 변수
+    AsyncTask_T asyncTask_t = null; // Asynctask 클래스를 사용하기 위한 변수
 
     String id;
 
@@ -50,8 +50,8 @@ public class TeamActivity extends AppCompatActivity {
         id = intent.getStringExtra("id");
 
         listview.setAdapter(teamAdapter);
-        test = new AsyncTask_T();
-        test.execute();
+        asyncTask_t = new AsyncTask_T();
+        asyncTask_t.execute();
 
         // 리스트뷰 선택했을 때 이벤트 team -> board 목록
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -123,7 +123,7 @@ public class TeamActivity extends AppCompatActivity {
                     teamAdapter.addItem(teamCode, teamName, teamMemberNo);
                     teamAdapter.notifyDataSetChanged();
                 }
-                test = null;
+                asyncTask_t = null;
 
             } catch (Exception e) {
                 e.printStackTrace();
